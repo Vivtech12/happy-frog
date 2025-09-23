@@ -1,0 +1,89 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts.ts";
+import Button from "../components/reusable/Button.astro";
+import { Icon } from "astro-icon/components";
+
+---
+
+<Layout title="Contact - Happy Frog" metaDescription="Get in touch with Happy Frog for your technology solutions and support.">
+	<section class="py-20 px-4 sm:px-6 lg:px-8 bg-base-100">
+		<div class="max-w-7xl mx-auto">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<div class="motion-preset-fade-in motion-delay-[300ms]">
+					<h1 class="text-4xl md:text-5xl font-bold text-text mb-6 uppercase">
+						Get in Touch
+					</h1>
+					<p class="text-lg text-text/80 mb-8">
+						Have questions or need assistance with our products and services? Get in touch with us using the form below, and our team will respond promptly. Whether you're seeking tech solutions or support, we're here to help!
+					</p>
+					<div class="space-y-4">
+						<div class="flex items-center space-x-4">
+							<div class="bg-primary/10 p-3 rounded-full">
+								<Icon name="phone" class="text-green-600" size={32}/>
+							</div>
+							<div class="text-text">
+								<p class="font-medium">Call Us</p>
+								<p class="text-text/70">+44 7492 230089</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="motion-preset-slide-right motion-delay-[500ms]">
+					<div class="bg-white rounded-2xl shadow-xl p-8">
+						<form action="https://submit-form.com/qhjSks0XP" class="space-y-6">
+							<div>
+								<label for="name" class="block text-sm font-medium text-text mb-2">Your Name</label>
+								<input
+									type="text"
+									id="name"
+									name="name"
+									required
+									class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-text placeholder-gray-800"
+									placeholder="John Doe"
+								/>
+							</div>
+
+							<div>
+								<label for="email" class="block text-sm font-medium text-text mb-2">Your Email</label>
+								<input
+									type="email"
+									id="email"
+									name="email"
+									required
+									class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-text placeholder-gray-800"
+									placeholder="john@example.com"
+								/>
+							</div>
+
+							<div>
+								<label for="message" class="block text-sm font-medium text-text mb-2">Your Message</label>
+								<textarea
+									id="message"
+									name="message"
+									rows="6"
+									required
+									class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-text placeholder-gray-800 resize-none"
+									placeholder="Tell us how we can help you..."
+								></textarea>
+							</div>
+
+							<div class="mt-6">
+								<button type="submit" class="group relative overflow-hidden px-8 py-3 rounded-full text-base font-medium transition-all duration-300 ease-in-out border-black border text-black hover:text-white w-full">
+									<span class="relative z-10 inline-flex items-center justify-center text-center">
+										Send Message
+										<svg class="ml-2 -mr-1 w-5 h-5 -rotate-90 transition-colors duration-300 text-gray-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+										</svg>
+									</span>
+									<span class="absolute inset-x-0 bottom-0 z-0 h-0 w-full rounded-full transition-all duration-300 ease-in-out bg-black group-hover:h-full"></span>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

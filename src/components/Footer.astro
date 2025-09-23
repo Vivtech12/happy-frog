@@ -1,128 +1,128 @@
 ---
 import { Icon } from "astro-icon/components";
-
 ---
 
 <footer class="bg-[#1a1a1a] text-white">
 	<div class="max-w-7xl mx-auto px-6 py-12 lg:py-16">
-	  <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-16">
-		<div>
-		  <div class="flex items-center space-x-2">
-			<Icon name="headset-one"/>
-			<h4 class="text-sm font-semibold">Contact & Support</h4>
-		  </div>
-		  <p class="mt-2 text-sm text-gray-400">
-			Have a question or need help? 
-		  </p>
+		<div
+			class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-16"
+		>
+			<div>
+				<div class="flex items-center space-x-2">
+					<Icon name="headset-one" />
+					<h4 class="text-sm font-semibold">Contact & Support</h4>
+				</div>
+				<p class="mt-2 text-sm text-gray-400">
+					Have a question or need help?
+				</p>
+			</div>
+
+			<div>
+				<div class="flex items-center space-x-2">
+					<Icon name="truck" />
+					<h4 class="text-sm font-semibold">
+						Fast & Secure Shipping
+					</h4>
+				</div>
+				<p class="mt-2 text-sm text-gray-400">
+					We offer reliable EU and UK delivery. All orders are shipped
+					with tracking.
+				</p>
+			</div>
+
+			<div>
+				<div class="flex items-center space-x-2">
+					<Icon name="every-user" />
+					<h4 class="text-sm font-semibold">Why Work With Us</h4>
+				</div>
+				<p class="mt-2 text-sm text-gray-400">
+					Our sourcing is usually direct from official brand partners,
+					ensuring authenticity and competitive pricing.
+				</p>
+			</div>
+
+			<div>
+				<div class="flex items-center space-x-2">
+					<Icon name="mouse-one" />
+					<h4 class="text-sm font-semibold">About Happy Frog</h4>
+				</div>
+				<p class="mt-2 text-sm text-gray-400">
+					Happy Frog is a leading B2B wholesaler of consumer
+					electronics, based in Birmingham.
+				</p>
+			</div>
 		</div>
-  
-		<div>
-		  <div class="flex items-center space-x-2">
-			<Icon name="truck"/>
-			<h4 class="text-sm font-semibold">Fast & Secure Shipping</h4>
-		  </div>
-		  <p class="mt-2 text-sm text-gray-400">
-			We offer reliable EU and UK delivery. All orders are shipped with
-			tracking.
-		  </p>
-		</div>
-  
-		<div>
-		  <div class="flex items-center space-x-2">
-			<Icon name="every-user"/>
-			<h4 class="text-sm font-semibold">Why Work With Us</h4>
-		  </div>
-		  <p class="mt-2 text-sm text-gray-400">
-			Our sourcing is usually direct from official brand partners, ensuring
-			authenticity and competitive pricing.
-		  </p>
-		</div>
-  
-		<div>
-		  <div class="flex items-center space-x-2">
-			<Icon name="mouse-one"/>
-			<h4 class="text-sm font-semibold">About Power Chase B.V.</h4>
-		  </div>
-		  <p class="mt-2 text-sm text-gray-400">
-			Power Chase B.V. is a leading B2B wholesaler of consumer electronics,
-			based in Rotterdam and operating since 2022.
-		  </p>
-		</div>
-	  </div>
 	</div>
-  
+
 	<hr class="border-gray-700" />
-  
+
 	<div class="max-w-7xl mx-auto px-6 py-12 lg:py-16">
-	  <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
-		<div>
-		  <h4 class="text-2xl font-bold">Company Information</h4>
-		  <div class="mt-4 text-sm text-gray-400">
-			<p>Power Chase B.V.</p>
-			<p>Graafstroomstraat 53C,</p>
-			<p>3044 AP Rotterdam,</p>
-			<p>The Netherlands</p>
-			<p class="mt-2">Kvk: 87031086</p>
-			<p>VAT: NL864182594B01</p>
-		  </div>
+		<div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+			<div>
+				<h4 class="text-2xl font-bold">Company Information</h4>
+				<div class="mt-4 text-sm text-gray-400">
+					<p>Happy Frog</p>
+					<p>Office 1,</p>
+					<p>909 Aldridge Road,</p>
+					<p>Birmingham</p>
+					<p class="mt-2">Tel: +44 7492 230089</p>
+					<!-- <p>VAT: NL864182594B01</p> -->
+				</div>
+			</div>
+
+			<div>
+				<h4 class="text-2xl font-bold">Quick links</h4>
+				<ul class="mt-4 text-sm space-y-2 text-gray-400">
+					<li>
+						<a href="/" class="hover:underline">Home</a>
+					</li>
+					<li>
+						<a href="/#categories" class="hover:underline">Shop</a>
+					</li>
+					<li>
+						<a href="#" class="hover:underline">Privacy Policy</a>
+					</li>
+					<li>
+						<a href="#" class="hover:underline"
+							>Terms & Conditions</a
+						>
+					</li>
+					<li>
+						<a href="#" class="hover:underline">Legal Notice</a>
+					</li>
+					<li>
+						<a href="/contact" class="hover:underline">Contact Us</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-span-1 md:col-span-1">
+				<h4 class="text-2xl font-bold">
+					Get in touch with
+				</h4>
+				<form class="mt-4 flex">
+					<input
+						type="email"
+						placeholder="Enter your email"
+						class="flex-1 rounded-l-md bg-[#2d2d2d] px-4 py-2 text-sm text-white focus:outline-none"
+					/>						
+					<a href="/contact" class="flex items-center rounded-r-md bg-white px-4 text-black hover:bg-gray-200">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+						</svg>
+						<a/>
+				</form>
+			</div>
 		</div>
-  
-		<div>
-		  <h4 class="text-2xl font-bold">Quick links</h4>
-		  <ul class="mt-4 text-sm space-y-2 text-gray-400">
-			<li>
-			  <a href="#" class="hover:underline">Home</a>
-			</li>
-			<li>
-			  <a href="#" class="hover:underline">About Us</a>
-			</li>
-			<li>
-			  <a href="#" class="hover:underline">Shop</a>
-			</li>
-			<li>
-			  <a href="#" class="hover:underline">Privacy Policy</a>
-			</li>
-			<li>
-			  <a href="#" class="hover:underline">Terms & Conditions</a>
-			</li>
-			<li>
-			  <a href="#" class="hover:underline">Legal Notice</a>
-			</li>
-			<li>
-			  <a href="#" class="hover:underline">Contact Us</a>
-			</li>
-		  </ul>
-		</div>
-  
-		<div class="col-span-1 md:col-span-1">
-		  <h4 class="text-2xl font-bold">Stay in the loop with our weekly newsletter</h4>
-		  <form class="mt-4 flex">
-			<input
-			  type="email"
-			  placeholder="Enter your email"
-			  class="flex-1 rounded-l-md bg-[#2d2d2d] px-4 py-2 text-sm text-white focus:outline-none"
-			/>
-			<button
-			  type="submit"
-			  class="flex items-center rounded-r-md bg-white px-4 text-black hover:bg-gray-200"
-			>
-			  <svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="h-5 w-5"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-			  >
-				<path
-				  stroke-linecap="round"
-				  stroke-linejoin="round"
-				  stroke-width="2"
-				  d="M17 8l4 4m0 0l-4 4m4-4H3"
-				/>
-			  </svg>
-			</button>
-		  </form>
-		</div>
-	  </div>
 	</div>
-  </footer>
+</footer>

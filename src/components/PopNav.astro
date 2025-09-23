@@ -12,7 +12,7 @@ const menuItems = [
 	},
 	{
 		title: "Contact",
-		link: "/#contact",
+		link: "/contact",
 	},
 ];
 ---
@@ -80,12 +80,12 @@ const menuItems = [
 					class="active:!bg-green/20 group relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full transition-colors duration-200 ease-in-out lg:hidden"
 				>
 					<span
-						class="z-50 h-[1px] w-7 rounded-full !bg-white transition-all duration-150 group-aria-pressed:h-0 group-aria-pressed:bg-white before:absolute before:h-[1px] before:w-7 before:-translate-x-3.5 before:-translate-y-3 before:rounded-full before:bg-white before:transition-all before:duration-150 before:content-[''] group-aria-pressed:before:translate-y-0 group-aria-pressed:before:rotate-45 after:absolute after:h-[1px] after:w-7 after:-translate-x-3.5 after:translate-y-3 after:rounded-full after:bg-white after:transition-all after:duration-150 after:content-[''] group-aria-pressed:after:translate-y-0 group-aria-pressed:after:-rotate-45 hover:cursor-pointer lg:hidden dark:!bg-white dark:before:bg-white dark:after:bg-white"
+						class="z-50 h-[1px] w-7 rounded-full !bg-black transition-all duration-150 group-aria-pressed:h-0 group-aria-pressed:bg-black before:absolute before:h-[1px] before:w-7 before:-translate-x-3.5 before:-translate-y-3 before:rounded-full before:bg-black before:transition-all before:duration-150 before:content-[''] group-aria-pressed:before:translate-y-0 group-aria-pressed:before:rotate-45 after:absolute after:h-[1px] after:w-7 after:-translate-x-3.5 after:translate-y-3 after:rounded-full after:bg-black after:transition-all after:duration-150 after:content-[''] group-aria-pressed:after:translate-y-0 group-aria-pressed:after:-rotate-45 hover:cursor-pointer lg:hidden "
 					>
 					</span>
 				</button>
 			</div>
-			<div class="flex items-center gap-3 w-52 justify-end px-4">
+			<div class=" items-center gap-3 w-52 justify-end px-4 hidden sm:flex">
 				<Icon name="search" size={24} />
 				<Icon name="user" size={24} />
 				<Icon name="shopping-cart" size={24} />
