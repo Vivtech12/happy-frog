@@ -1,0 +1,39 @@
+---
+
+---
+
+<section class="w-screen bg-whi">
+	<div
+		class="w-screen overflow-hidden py-4 opacity-0 intersect:opacity-100 intersect-half intersect-once intersect:animate-reveal"
+	>
+		<div class="relative mx-auto">
+			<video
+				id="heroVideo"
+				class="hero-video h-[80vh] w-screen object-cover sm:rounded-3xl overflow-hidden mx-auto"
+				muted
+				autoplay
+				loop
+				playsinline
+			>
+				<source
+					src="/hero.mp4"
+					type="video/mp4"
+					media="(max-width: 640px)"
+				/>
+				<source src="/hero.mp4" type="video/mp4" />
+				Your browser does not support the video tag.
+			</video>
+			<div
+				class="text-overlay pointer-events-none absolute inset-0 w-full h-full grid place-items-center bg-black/50 p-12"
+			>
+				<div class="text-white">
+					<h2
+						class="max-w-3xl text-center text-4xl md:text-6xl font-bold"
+					>
+						Efficient Fulfilment. <br />Consistent Flow.
+					</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

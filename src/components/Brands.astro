@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+const brands = import.meta.glob<{ default: ImageMetadata }>(
+	"/src/icons/brands/*.{jpeg,jpg,png,gif,svg,webp}",
+);
+---
+
+<section class="py-10 pb-4 pt-8 text-gray-900 bg-white w-screen lg:py-32">
+	<h2 class="mb-6 text-center font-bold tracking-tight text-gray-900 lg:mb-8">
+		Our product range
+	</h2>
+	<p
+		class="relative mt-6 text-center text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none"
+	>
+		We are trusted by the world’s most innovative teams
+	</p>
+
+	<div
+		class="logos group relative overflow-hidden whitespace-nowrap py-10 [mask-image:_linear-gradient(to_right,_transparent_0,_white_128px,white_calc(100%-128px),_transparent_100%)] lg:py-24"
+	>
+		<div
+			class="group-hover:animation-pause inline-block w-max animate-slide-left-infinite"
+		>
+			<!-- Ensure that the images cover entire screen width for a smooth transition -->
+			{
+				Object.keys(brands).map(async (image) => {
+					const src = (await brands[image]()).default;
+					return (
+						<div class="inline-block h-11 w-auto px-16">
+							<Image
+								src={src}
+								alt={
+									image.split("/")[3].split(".")[0] + " logo"
+								}
+								class="h-full w-full object-cover"
+							/>
+						</div>
+					);
+				})
+			}
+		</div>
+
+		<!-- Duplicate of the above for infinite effect (you can use javascript to duplicate this too) -->
+		<div
+			class="group-hover:animation-pause inline-block w-max animate-slide-left-infinite"
+		>
+			{
+				Object.keys(brands).map(async (image) => {
+					const src = (await brands[image]()).default;
+					return (
+						<div class="inline-block h-11 w-auto px-16">
+							<Image
+								src={src}
+								alt={
+									image.split("/")[3].split(".")[0] + " logo"
+								}
+								class="h-full w-full object-cover grayscale transition-colors duration-300 hover:grayscale-0"
+							/>
+						</div>
+					);
+				})
+			}
+		</div>
+	</div>
+</section>

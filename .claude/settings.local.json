@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__astro-docs__search_astro_docs",
+      "Bash(pnpm add:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(pnpm astro check:*)",
+      "Bash(pnpm run astro:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://example.com",
+	site: "https://happyfrog2011.co.uk",
 	integrations: [icon(), sitemap()],
 	vite: {
 		plugins: [tailwindcss()],
@@ -14,7 +14,8 @@ export default defineConfig({
         fonts: [{
             provider: fontProviders.google(),
             name: "Poppins",
-            cssVariable: "--font-poppins"
+            cssVariable: "--font-poppins",
+            weights:["100 900"]
         }]
     }
 });

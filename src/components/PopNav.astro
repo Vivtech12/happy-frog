@@ -1,39 +1,38 @@
 ---
-import Button from "./reusable/Button.astro";
 import { Icon } from "astro-icon/components";
 
 const menuItems = [
 	{
-		title: "Features",
-		link: "/#features",
+		title: "Shop",
+		link: "/#shop",
 	},
 	{
-		title: "AI Insights",
-		link: "/#ai-insights",
+		title: "Collections",
+		link: "/#collections",
 	},
 	{
-		title: "Ask Bond",
-		link: "/#ask-bond",
-	},
-	{
-		title: "My Profile",
-		link: "/#my-profile",
-	},
-	{
-		title: "Apply For Waitlist",
-		link: "/contact",
+		title: "Contact",
+		link: "/#contact",
 	},
 ];
 ---
 
-<header class="z-[999] w-screen bg-black px-4 2xl:px-0">
+<header
+	class="z-[999] fixed w-screen sm:w-[calc(100vw-12px)] mx-auto bg-white sm:rounded-t-3xl"
+>
 	<div
-		class="border-midtone fixed top-0 left-0 z-50 mx-auto w-screen border-b bg-black px-4 lg:static lg:w-auto lg:max-w-7xl lg:py-2 xl:px-0"
+		class="fixed top-0 left-0 z-50 w-screen sm:w-[calc(100vw-12px)] mx-auto sm:rounded-t-3xl bg-white px-4 lg:static lg:w-auto lg:max-w-7xl lg:py-2 xl:px-0"
 	>
-		<div class="flex h-16 items-center justify-between bg-black">
+		<div
+			class="flex h-16 items-center justify-between bg-white rounded-t-3xl"
+		>
 			<div class="lg:flex lg:items-center lg:gap-12">
 				<a class="flex w-52 items-center gap-2 text-lg" href="/">
-					<Icon name="logo" class="h-auto w-28 flex-shrink-0" aria-label="home link" />
+					<Icon
+						name="logo"
+						class="h-auto w-14 flex-shrink-0"
+						aria-label="home link"
+					/>
 				</a>
 			</div>
 			<div
@@ -41,22 +40,33 @@ const menuItems = [
 			>
 				<div
 					id="mobile-menu"
-					class="top-[64px] hidden h-[calc(100vh-64px)] w-screen translate-y-[5vh] transform overflow-visible rounded-xl bg-transparent opacity-0 backdrop-blur-lg transition-all transition-discrete duration-500 backdrop:top-[64px] backdrop:bg-black/0 backdrop:backdrop-blur-lg backdrop:transition-[overlay,display,opacity,transform] backdrop:transition-discrete backdrop:duration-1000 open:block open:translate-y-0 open:opacity-100 open:backdrop:bg-black/40 lg:mt-0 lg:block lg:h-auto lg:w-auto lg:translate-y-0 lg:opacity-100 lg:duration-0 dark:open:backdrop:bg-black/20 open:starting:-translate-y-[5vh] open:starting:opacity-0"
+					class="top-[64px] hidden h-[calc(100vh-64px)] w-screen translate-y-[5vh] transform overflow-visible rounded-xl bg-transparent opacity-0 backdrop-blur-lg transition-all transition-discrete duration-500 backdrop:top-[64px] backdrop:bg-white/0 backdrop:backdrop-blur-lg backdrop:transition-[overlay,display,opacity,transform] backdrop:transition-discrete backdrop:duration-1000 open:block open:translate-y-0 open:opacity-100 open:backdrop:bg-white/40 lg:mt-0 lg:block lg:h-auto lg:w-auto lg:translate-y-0 lg:opacity-100 lg:duration-0 dark:open:backdrop:bg-white/20 open:starting:-translate-y-[5vh] open:starting:opacity-0"
 				>
-					<nav class="relative grid h-[calc(100vh-180px)] place-items-center lg:block lg:h-auto">
-						<ul class="flex flex-col items-center justify-center gap-6 text-sm lg:flex-row">
+					<nav
+						class="relative grid h-[calc(100vh-180px)] place-items-center lg:block lg:h-auto"
+					>
+						<ul
+							class="flex flex-col items-center justify-center gap-6 text-sm lg:flex-row"
+						>
 							{
-								menuItems.map((item: { link: string; title: string }) => (
-									<li class="last:block lg:last:hidden">
-										<a
-											aria-current={Astro.url.pathname.includes(item.link)}
-											class={`text-2xl text-white hover:text-gray-400 aria-current:!underline aria-current:!underline-offset-8 lg:text-lg`}
-											href={item.link}
-										>
-											{item.title}
-										</a>
-									</li>
-								))
+								menuItems.map(
+									(item: { link: string; title: string }) => (
+										<li>
+											<a
+												aria-current={Astro.url.pathname.includes(
+													item.link,
+												)}
+												class="group relative overflow-hidden text-black px-4 py-2 transition-all duration-300 ease-in-out hover:text-white aria-current:!underline aria-current:!underline-offset-8 lg:text-lg"
+												href={item.link}
+											>
+												<span class="relative z-10 text-2xl lg:text-lg">
+													{item.title}
+												</span>
+												<span class="absolute inset-x-0 bottom-0 z-0 h-0 w-full bg-black  sm:rounded-3xl transition-all duration-300 ease-in-out group-hover:h-full" />
+											</a>
+										</li>
+									),
+								)
 							}
 						</ul>
 					</nav>
@@ -70,25 +80,45 @@ const menuItems = [
 					class="active:!bg-green/20 group relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full transition-colors duration-200 ease-in-out lg:hidden"
 				>
 					<span
-						class="z-50 h-[1px] w-7 rounded-full !bg-black transition-all duration-150 group-aria-pressed:h-0 group-aria-pressed:bg-white before:absolute before:h-[1px] before:w-7 before:-translate-x-3.5 before:-translate-y-3 before:rounded-full before:bg-black before:transition-all before:duration-150 before:content-[''] group-aria-pressed:before:translate-y-0 group-aria-pressed:before:rotate-45 after:absolute after:h-[1px] after:w-7 after:-translate-x-3.5 after:translate-y-3 after:rounded-full after:bg-black after:transition-all after:duration-150 after:content-[''] group-aria-pressed:after:translate-y-0 group-aria-pressed:after:-rotate-45 hover:cursor-pointer lg:hidden dark:!bg-white dark:before:bg-white dark:after:bg-white"
+						class="z-50 h-[1px] w-7 rounded-full !bg-white transition-all duration-150 group-aria-pressed:h-0 group-aria-pressed:bg-white before:absolute before:h-[1px] before:w-7 before:-translate-x-3.5 before:-translate-y-3 before:rounded-full before:bg-white before:transition-all before:duration-150 before:content-[''] group-aria-pressed:before:translate-y-0 group-aria-pressed:before:rotate-45 after:absolute after:h-[1px] after:w-7 after:-translate-x-3.5 after:translate-y-3 after:rounded-full after:bg-white after:transition-all after:duration-150 after:content-[''] group-aria-pressed:after:translate-y-0 group-aria-pressed:after:-rotate-45 hover:cursor-pointer lg:hidden dark:!bg-white dark:before:bg-white dark:after:bg-white"
 					>
 					</span>
 				</button>
 			</div>
-			<Button
-				class="hidden w-52 items-center text-center lg:flex"
-				link="/contact"
-				type="filled"
-				buttonText="Apply for Waitlist"
-			/>
+			<div class="flex items-center gap-3 w-52 justify-end px-4">
+				<Icon name="search" size={24} />
+				<Icon name="user" size={24} />
+				<Icon name="shopping-cart" size={24} />
+			</div>
 		</div>
 	</div>
 </header>
 
 <script>
 	function initializeMobileMenu() {
-		const mobileMenuButton = document.getElementById("mobile-menu-button") as HTMLButtonElement;
-		const mobileMenu = document.getElementById("mobile-menu") as HTMLElement;
+		// Handle navbar positioning on refresh/scroll
+		function handleNavbarPosition() {
+			const header = document.querySelector("header");
+			if (header) {
+				// Force a small scroll down to trigger navbar repositioning
+				if (window.scrollY > 0) {
+					// Force a small scroll adjustment to trigger navbar repositioning
+					setTimeout(() => {
+						window.scrollTo(0, window.scrollY);
+					}, 100);
+				}
+			}
+		}
+
+		// Run on page load
+		handleNavbarPosition();
+
+		const mobileMenuButton = document.getElementById(
+			"mobile-menu-button",
+		) as HTMLButtonElement;
+		const mobileMenu = document.getElementById(
+			"mobile-menu",
+		) as HTMLElement;
 
 		if (mobileMenuButton && mobileMenu) {
 			function handleMobileMenuState() {
@@ -96,12 +126,23 @@ const menuItems = [
 					mobileMenu.setAttribute("popover", "auto");
 
 					if (!mobileMenuButton.hasAttribute("group-aria-pressed")) {
-						mobileMenuButton.setAttribute("group-aria-pressed", "false");
+						mobileMenuButton.setAttribute(
+							"group-aria-pressed",
+							"false",
+						);
 					}
 
-					if (!mobileMenu.hasAttribute("data-toggle-listener-added")) {
-						mobileMenu.addEventListener("toggle", handlePopoverToggle);
-						mobileMenu.setAttribute("data-toggle-listener-added", "true");
+					if (
+						!mobileMenu.hasAttribute("data-toggle-listener-added")
+					) {
+						mobileMenu.addEventListener(
+							"toggle",
+							handlePopoverToggle,
+						);
+						mobileMenu.setAttribute(
+							"data-toggle-listener-added",
+							"true",
+						);
 					}
 				} else {
 					mobileMenu.removeAttribute("popover");
@@ -113,7 +154,10 @@ const menuItems = [
 					}
 
 					if (mobileMenu.hasAttribute("data-toggle-listener-added")) {
-						mobileMenu.removeEventListener("toggle", handlePopoverToggle);
+						mobileMenu.removeEventListener(
+							"toggle",
+							handlePopoverToggle,
+						);
 					}
 					document.body.classList.remove("overflow-y-hidden");
 				}

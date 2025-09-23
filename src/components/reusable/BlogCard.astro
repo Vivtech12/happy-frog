@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 
 const { image, title, category, snippet, slug } = Astro.props;
-const strapiUrl = import.meta.env.STRAPI_URL;
 ---
 
 <li class="flex justify-center">
@@ -10,7 +9,7 @@ const strapiUrl = import.meta.env.STRAPI_URL;
 		<figure class="relative aspect-video">
 			<Image src={image} alt="Blog" class="h-auto w-full object-cover group-hover:cursor-pointer" />
 			<div
-				class="text-primary absolute top-2 right-2 h-8 w-24 rounded-xl bg-white py-2 text-center text-sm font-semibold tracking-tight text-black"
+				class="absolute top-2 right-2 h-8 w-24 rounded-xl bg-white py-2 text-center text-sm font-semibold tracking-tight text-black"
 			>
 				{category}
 			</div>

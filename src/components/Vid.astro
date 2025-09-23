@@ -1,73 +1,72 @@
-<div class="h-screen w-screen overflow-hidden">
-	<div class="relative h-full w-full">
-		<video id="heroVideo" class="h-full w-full object-cover" muted autoplay loop playsinline>
-			<source src="/vid-m.mp4" type="video/mp4" media="(max-width: 640px)" />
-			<source src="/vid.mp4" type="video/mp4" />
-			Your browser does not support the video tag.
-		</video>
-		<div class="absolute right-6 bottom-4 z-10 flex gap-4">
-			<button
-				id="playPauseBtn"
-				class="flex h-15 w-15 cursor-pointer items-center justify-center rounded-full bg-black/70 text-2xl text-white backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-black/90 active:scale-95"
-				aria-label="Play/Pause video"
-			>
-				<span id="playPauseIcon">⏸</span>
-			</button>
+---
+import Underline from "./reusable/Underline.astro";
+---
 
-			<button
-				id="muteBtn"
-				class="flex h-15 w-15 cursor-pointer items-center justify-center rounded-full bg-black/70 text-2xl text-white backdrop-blur-md transition-all duration-300 hover:scale-110 hover:hover:bg-black/90 active:scale-95"
-				aria-label="Mute/Unmute video"
+<section class="w-screen bg-white rounded-t-3xl">
+	<div class="h-120 w-full max-w-7xl mx-auto overflow-hidden py-4">
+		<div class="relative h-full w-full">
+			<video
+				id="heroVideo"
+				class="h-full w-full object-cover  sm:rounded-3xl overflow-hidden"
+				muted
+				autoplay
+				loop
+				playsinline
 			>
-				<span id="muteIcon">🔇</span>
-			</button>
+				<source
+					src="/hero.mp4"
+					type="video/mp4"
+					media="(max-width: 640px)"
+				/>
+				<source src="/hero.mp4" type="video/mp4" />
+				Your browser does not support the video tag.
+			</video>
+			<div
+				class="pointer-events-none absolute bottom-12 left-12 flex items-end justify-start p-12"
+			>
+				<div class="text-white">
+					<h1
+						class="mt-auto max-w-3xl"
+					>
+						Your Trusted B2B Company For Electronics in the UK
+					</h1>
+					<div class="my-6 h-[3px] w-20 bg-white"></div>
+				</div>
+			</div>
 		</div>
+	</div>
+	<div class="max-w-7xl mx-auto p-8 md:p-12 lg:p-16">
 		<div
-			class="pointer-events-none absolute bottom-44 left-12 flex items-center justify-start p-12"
+			class="grid md:grid-cols-2 items-start md:space-x-12 lg:space-x-24"
 		>
-			<div class="text-white">
-				<h1 class="mb-4 text-3xl font-normal drop-shadow-2xl md:text-5xl">Secure More Funding</h1>
-				<div class="my-6 h-[3px] w-20 bg-white"></div>
-				<p class="mx-auto max-w-2xl text-xl drop-shadow-lg md:text-2xl">
-					Successfully secure grant and venture funding with a stunning explainer video about your
-					research. It will instantly become your best communication weapon.
+			<!-- Left Column: Title -->
+			<div class="flex-shrink-0 mb-8 md:mb-0">
+				<h1
+					class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-center"
+				>
+					<Underline>Why</Underline> Power Chase <br/><span
+						class="text-green-700">B.V.?</span
+					>
+				</h1>
+			</div>
+
+			<!-- Right Column: Description -->
+			<div class="flex-grow">
+				<p class="text-base sm:text-lg md:text-xl leading-relaxed">
+					Power Chase B.V. is a leading European B2B wholesale
+					distributor of consumer electronics, based in <strong
+						class="font-semibold">Rotterdam, Netherlands</strong
+					>, serving clients across <strong class="font-semibold"
+						>Europe and the UK</strong
+					>. We specialize in the sourcing and distribution of
+					high-demand tech products — always with <strong
+						class="font-semibold"
+						>competitive pricing, fast shipping</strong
+					>, and <strong class="font-semibold"
+						>transparent service</strong
+					>.
 				</p>
 			</div>
 		</div>
 	</div>
-</div>
-
-<script>
-	const video = document.getElementById("heroVideo") as HTMLVideoElement;
-	const playPauseBtn = document.getElementById("playPauseBtn") as HTMLButtonElement;
-	const playPauseIcon = document.getElementById("playPauseIcon") as HTMLSpanElement;
-	const muteBtn = document.getElementById("muteBtn") as HTMLButtonElement;
-	const muteIcon = document.getElementById("muteIcon") as HTMLSpanElement;
-
-	// Play/Pause functionality
-	playPauseBtn.addEventListener("click", () => {
-		if (video.paused) {
-			video.play();
-			playPauseIcon.textContent = "⏸";
-		} else {
-			video.pause();
-			playPauseIcon.textContent = "▶";
-		}
-	});
-
-	// Mute/Unmute functionality
-	muteBtn.addEventListener("click", () => {
-		if (video.muted) {
-			video.muted = false;
-			muteIcon.textContent = "🔊";
-		} else {
-			video.muted = true;
-			muteIcon.textContent = "🔇";
-		}
-	});
-
-	// Update play button when video ends
-	video.addEventListener("ended", () => {
-		playPauseIcon.textContent = "▶";
-	});
-</script>
+</section>

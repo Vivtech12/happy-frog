@@ -1,44 +1,38 @@
 ---
-const { class: className, type, buttonText, link, arrow } = Astro.props as Props;
+const { class: className, buttonText, link, arrow, inverted = false } = Astro.props as Props;
 import { Icon } from "astro-icon/components";
 import { twMerge } from "tailwind-merge";
 
 export type Props = {
-	buttonText: string;
-	link: string;
-	type: string;
-	width?: string;
-	class?: string;
-	arrow?: boolean;
+    buttonText: string;
+    link: string;
+    class?: string;
+    arrow?: boolean;
+    inverted?: boolean;
 };
-const filledClasses = `
-  bg-primary whitespace-nowrap active:focus:animate-click hover:opacity-80 relative inline-flex items-center justify-center p-4 px-5 py-3 text-base max-h-12 overflow-hidden text-white rounded-lg transition-all duration-500 ease-in-out
-`;
-const filledBlueClasses = `
-  bg-accent-darkblue whitespace-nowrap active:focus:animate-click hover:opacity-80 relative inline-flex items-center justify-center p-4 px-5 py-3 text-base max-h-12 overflow-hidden text-white rounded-lg transition-all duration-500 ease-in-out hover:opacity-80
-`;
-const darkClasses = `
-  bg-background-dark text-white active:focus:animate-click inline-flex whitespace-nowrap items-center justify-center px-4 py-3 text-base max-h-12 hover:shadow-[0_0_10px_2px_rgba(75,58,179,0.3)] rounded-lg transition duration-500 ease-in-out hover:opacity-80
-`;
-const outlineClasses = `
-  bg-[#F3F3FB] inline-flex whitespace-nowrap items-center justify-center px-4 py-3 text-text-primary text-base max-h-12 hover:shadow-[0_0_10px_2px_rgba(75,58,179,0.3)] rounded-lg transition duration-500 ease-in-out
-`;
 
-const typeClasses =
-	type === "filled"
-		? filledClasses
-		: type === "filledBlue"
-			? filledBlueClasses
-			: type === "dark"
-				? darkClasses
-				: outlineClasses;
+const baseClasses = "group relative overflow-hidden px-8 py-3 rounded-full text-base font-medium transition-all duration-300 ease-in-out";
 
-const combinedClasses = twMerge(typeClasses, className);
+const defaultClasses = "border-black border text-black hover:text-white";
+const invertedClasses = "border-white border text-white hover:text-black bg-black hover:border-black";
+
+const backgroundDefaultClasses = "bg-black group-hover:h-full";
+const backgroundInvertedClasses = "bg-white group-hover:h-full";
+
+const textDefaultClasses = "text-gray-600 group-hover:text-white";
+const textInvertedClasses = "text-white group-hover:text-black";
+
+const typeClasses = inverted ? invertedClasses : defaultClasses;
+const backgroundClasses = inverted ? backgroundInvertedClasses : backgroundDefaultClasses;
+const textClasses = inverted ? textInvertedClasses : textDefaultClasses;
+
+const combinedClasses = twMerge(baseClasses, typeClasses, className);
 ---
 
 <a href={link} class={combinedClasses}>
-	<span class="active:focus:animate-click inline-flex items-center text-center">
-		{buttonText}
-		{arrow && <Icon name="arrowRight" class="ml-2 text-inherit" />}
-	</span>
+    <span class="relative z-10 inline-flex items-center justify-center text-center">
+        {buttonText}
+        {arrow && <Icon name="arrow-down" class={twMerge("ml-2 -mr-1 w-5 -rotate-90 h-5 transition-colors duration-300", textClasses)} />}
+    </span>
+    <span class={twMerge("absolute inset-x-0 bottom-0 z-0 h-0 w-full rounded-full transition-all duration-300 ease-in-out", backgroundClasses)} />
 </a>

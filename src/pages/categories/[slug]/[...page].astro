@@ -1,0 +1,241 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const categories = [
+    {
+      slug: "smartphones-tablets",
+      title: "Smartphones & Tablets",
+      id: "Phones",
+      description: "Latest smartphones and tablets from top brands",
+      image: "https://prd.place/400?id=3&padding=80",
+    },
+    {
+      slug: "wearables",
+      title: "Wearables",
+      id: "Wearables",
+      description: "Smartwatches, fitness trackers and wearable tech",
+      image: "https://prd.place/400?id=8&padding=80",
+    },
+    {
+      slug: "computing-components",
+      title: "Computing & Components",
+      id: "Laptops",
+      description: "Computers, laptops and PC components",
+      image: "https://prd.place/400?id=2&padding=80",
+    },
+    {
+      slug: "networking-wifi",
+      title: "Networking & WiFi",
+      id: "Networking",
+      description: "Routers, switches and networking equipment",
+      image: "https://prd.place/400?id=6&padding=80",
+    },
+    {
+      slug: "accessories",
+      title: "Accessories",
+      id: "Other Electronics",
+      description: "Cases, chargers and electronic accessories",
+      image: "https://prd.place/400?id=7&padding=80",
+    },
+  ];
+
+  // Get all electronics products
+  const electronics = await getCollection("electronics");
+
+  // For each category, create paginated results
+  return categories.flatMap((category) => {
+    const categoryProducts = electronics.filter(
+      (product) => product.data.product_category === category.id,
+    );
+
+    return paginate(categoryProducts, {
+      params: { slug: category.slug },
+      pageSize: 12,
+      props: { category },
+    });
+  });
+}
+
+const { page } = Astro.props;
+const { category } = Astro.props;
+---
+
+<Layout title={category.title}>
+  <div class="min-h-screen bg-white py-12">
+    <div class="max-w-7xl mx-auto px-8 2xl:px-0">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-black mb-4">
+          {category.title}
+        </h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          {category.description}
+        </p>
+      </div>
+
+      <!-- Hero Image -->
+      <div class="mb-12">
+        <img
+          src={category.image}
+          alt={category.title}
+          class="w-full h-96 object-contain rounded-lg shadow-lg"
+        />
+      </div>
+
+      <!-- Category Content -->
+      <div class="bg-gray-50 rounded-lg p-8 mb-12">
+        <h2 class="text-2xl font-semibold text-black mb-4">
+          Featured Products
+        </h2>
+        <p class="text-gray-600 mb-6">
+          Discover our curated selection of premium {
+            category.title.toLowerCase()
+          } products, carefully chosen for quality and performance.
+        </p>
+
+        <!-- Product Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {
+            page.data.map((product: any) => (
+              <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <img
+                  src={product.data.product_image_url}
+                  alt={product.data.product_title}
+                  class="w-full h-48 object-contain"
+                />
+                <div class="p-4">
+                  <h3 class="font-semibold text-black mb-2 line-clamp-2">
+                    {product.data.product_title}
+                  </h3>
+                  <div class="flex items-center mb-2">
+                    <span class="text-yellow-500">★</span>
+                    <span class="text-sm text-gray-600 ml-1">
+                      {product.data.product_rating} (
+                      {product.data.total_reviews.toLocaleString()} reviews)
+                    </span>
+                  </div>
+                  <div class="flex justify-between items-center mb-3">
+                    <div>
+                      <span class="text-lg font-bold text-black">
+                        ${product.data.discounted_price.toLocaleString()}
+                      </span>
+                      {product.data.original_price && (
+                        <span class="text-sm text-gray-500 line-through ml-2">
+                          ${product.data.original_price.toLocaleString()}
+                        </span>
+                      )}
+                    </div>
+                    {product.data.discount_percentage > 0 && (
+                      <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">
+                        {product.data.discount_percentage}% OFF
+                      </span>
+                    )}
+                  </div>
+                  {product.data.is_best_seller && (
+                    <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded mb-2">
+                      Best Seller
+                    </span>
+                  )}
+                  {product.data.has_coupon && (
+                    <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded mb-2 ml-2">
+                      Coupon Available
+                    </span>
+                  )}
+                  <a
+                    href={product.data.product_page_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="block w-full bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition-colors text-center"
+                  >
+                    View on Amazon
+                  </a>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        {
+          page.data.length === 0 && (
+            <div class="text-center py-12">
+              <p class="text-gray-500">No products found in this category.</p>
+            </div>
+          )
+        }
+
+        <!-- Pagination Controls -->
+        <div class="flex justify-center items-center mt-8 space-x-4">
+          {
+            page.url.first && (
+              <a
+                href={page.url.first}
+                class="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800 transition-colors"
+              >
+                First
+              </a>
+            )
+          }
+          {
+            page.url.prev && (
+              <a
+                href={page.url.prev}
+                class="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800 transition-colors"
+              >
+                Previous
+              </a>
+            )
+          }
+          <span class="px-4 py-2 text-gray-600">
+            Page {page.currentPage} of {page.lastPage}
+            <span class="ml-2 text-sm">
+              (Showing {page.start + 1}-{page.end + 1} of {page.total} products)
+            </span>
+          </span>
+          {
+            page.url.next && (
+              <a
+                href={page.url.next}
+                class="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800 transition-colors"
+              >
+                Next
+              </a>
+            )
+          }
+          {
+            page.url.last && (
+              <a
+                href={page.url.last}
+                class="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800 transition-colors"
+              >
+                Last
+              </a>
+            )
+          }
+        </div>
+      </div>
+
+      <!-- Back to Categories -->
+      <div class="text-center">
+        <a
+          href="/"
+          class="inline-flex items-center text-green-700 hover:text-green-800 font-medium"
+        >
+          <svg
+            class="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Back to All Categories
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

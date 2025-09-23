@@ -4,7 +4,6 @@ import Footer from "../components/Footer.astro";
 import Navbar from "../components/PopNav.astro";
 import "../styles/global.css";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts.ts";
-let path = Astro.url.pathname;
 const { metaTitle, metaDescription, metaImage } = Astro.props;
 ---
 
@@ -17,9 +16,31 @@ const { metaTitle, metaDescription, metaImage } = Astro.props;
 			metaImage={metaImage}
 		/>
 	</head>
-	<body class="overflow-x-hidden">
+	<body class="overflow-x-hidden bg-neutral-800">
+		<div
+			class="w-screen bg-neutral-800 text-white text-center h-16 flex items-center justify-center transition-all transition-div"
+		>
+			A question? Visit our contact page
+		</div>
 		<Navbar />
-		<slot />
-		<!-- <Footer /> -->
+		<main class="sm:mt-16 w-screen sm:w-[calc(100vw-12px)] bg-white">
+			<slot />
+		</main>
+		<Footer />
+		<script>
+			window.addEventListener("scroll", function () {
+				const div = document.querySelector(
+					".transition-div",
+				) as HTMLDivElement;
+				if (window.scrollY > 0) {
+					div.classList.add("!h-0");
+				} else {
+					div.classList.remove("!h-0");
+				}
+			});
+			import { Observer } from "tailwindcss-intersect";
+
+			Observer.start();
+		</script>
 	</body>
 </html>
