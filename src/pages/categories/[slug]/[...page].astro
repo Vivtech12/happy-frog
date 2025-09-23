@@ -116,7 +116,7 @@ const { category } = Astro.props;
                       {product.data.total_reviews.toLocaleString()} reviews)
                     </span>
                   </div>
-                  <div class="flex justify-between items-center mb-3">
+                  {/* <div class="flex justify-between items-center mb-3">
                     <div>
                       <span class="text-lg font-bold text-black">
                         £{product.data.discounted_price.toLocaleString()}
@@ -132,25 +132,25 @@ const { category } = Astro.props;
                         {product.data.discount_percentage}% OFF
                       </span>
                     )}
-                  </div>
+                  </div> */}
                   {product.data.is_best_seller && (
                     <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded mb-2">
                       Best Seller
                     </span>
                   )}
-                  {product.data.has_coupon && (
+                  {/* {product.data.has_coupon && (
                     <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded mb-2 ml-2">
                       Coupon Available
                     </span>
-                  )}
-                  <a
+                  )} */}
+                  {/* <a
                     href={product.data.product_page_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="block w-full bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition-colors text-center"
                   >
                     View on Amazon
-                  </a>
+                  </a> */}
                 </div>
               </div>
             ))
