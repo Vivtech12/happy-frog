@@ -119,11 +119,11 @@ const { category } = Astro.props;
                   <div class="flex justify-between items-center mb-3">
                     <div>
                       <span class="text-lg font-bold text-black">
-                        ${product.data.discounted_price.toLocaleString()}
+                        £{product.data.discounted_price.toLocaleString()}
                       </span>
                       {product.data.original_price && (
                         <span class="text-sm text-gray-500 line-through ml-2">
-                          ${product.data.original_price.toLocaleString()}
+                          £{product.data.original_price.toLocaleString()}
                         </span>
                       )}
                     </div>
