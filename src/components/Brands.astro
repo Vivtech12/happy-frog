@@ -29,13 +29,13 @@ const brands = import.meta.glob<{ default: ImageMetadata }>(
 				Object.keys(brands).map(async (image) => {
 					const src = (await brands[image]()).default;
 					return (
-						<div class="inline-block h-11 w-auto px-16">
+						<div class="inline-block h-16 w-auto px-16 flex items-center justify-center">
 							<Image
 								src={src}
 								alt={
 									image.split("/")[3].split(".")[0] + " logo"
 								}
-								class="h-full w-full object-cover"
+								class="h-full w-auto object-contain"
 							/>
 						</div>
 					);
@@ -51,13 +51,13 @@ const brands = import.meta.glob<{ default: ImageMetadata }>(
 				Object.keys(brands).map(async (image) => {
 					const src = (await brands[image]()).default;
 					return (
-						<div class="inline-block h-11 w-auto px-16">
+						<div class="inline-block h-16 w-auto px-16 flex items-center justify-center">
 							<Image
 								src={src}
 								alt={
 									image.split("/")[3].split(".")[0] + " logo"
 								}
-								class="h-full w-full object-cover grayscale transition-colors duration-300 hover:grayscale-0"
+								class="h-full w-auto object-contain grayscale transition-colors duration-300 hover:grayscale-0"
 							/>
 						</div>
 					);
