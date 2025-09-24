@@ -17,11 +17,18 @@ const electronics = defineCollection({
       return rows.map((row: any, index) => {
         // Create a slug from the product title for the ID
         let slug = row.product_title
-          .toLowerCase()
-          .replace(/[^a-z0-9\s-]/g, '')
-          .replace(/\s+/g, '-')
-          .replace(/-+/g, '-')
-          .trim();
+          ? row.product_title
+              .toLowerCase()
+              .replace(/[^a-z0-9\s-]/g, '')
+              .replace(/\s+/g, '-')
+              .replace(/-+/g, '-')
+              .trim()
+          : '';
+
+        // Fallback for empty or invalid slugs
+        if (!slug || slug.length === 0) {
+          slug = `product-${index}`;
+        }
 
         // Ensure ID is unique by adding index suffix if needed
         let finalSlug = slug;
@@ -34,7 +41,7 @@ const electronics = defineCollection({
 
         return {
           ...row,
-          id: finalSlug || `product-${index}`
+          id: finalSlug
         };
       });
     }

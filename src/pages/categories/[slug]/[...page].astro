@@ -99,14 +99,17 @@ const { category } = Astro.props;
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
           {
             page.data.map((product: any) => (
-              <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+              <a
+                href={`/products/${product.id}`}
+                class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group"
+              >
                 <img
                   src={product.data.product_image_url}
                   alt={product.data.product_title}
-                  class="w-full h-48 object-contain"
+                  class="w-full h-48 object-contain group-hover:scale-105 transition-transform duration-200"
                 />
                 <div class="p-4">
-                  <h3 class="font-semibold text-black mb-2 line-clamp-2">
+                  <h3 class="font-semibold text-black mb-2 line-clamp-2 group-hover:text-blue-600">
                     {product.data.product_title}
                   </h3>
                   <div class="flex items-center mb-2">
@@ -116,43 +119,16 @@ const { category } = Astro.props;
                       {product.data.total_reviews.toLocaleString()} reviews)
                     </span>
                   </div>
-                  {/* <div class="flex justify-between items-center mb-3">
-                    <div>
-                      <span class="text-lg font-bold text-black">
-                        £{product.data.discounted_price.toLocaleString()}
-                      </span>
-                      {product.data.original_price && (
-                        <span class="text-sm text-gray-500 line-through ml-2">
-                          £{product.data.original_price.toLocaleString()}
-                        </span>
-                      )}
-                    </div>
-                    {product.data.discount_percentage > 0 && (
-                      <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">
-                        {product.data.discount_percentage}% OFF
-                      </span>
-                    )}
-                  </div> */}
                   {product.data.is_best_seller && (
                     <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded mb-2">
                       Best Seller
                     </span>
                   )}
-                  {/* {product.data.has_coupon && (
-                    <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded mb-2 ml-2">
-                      Coupon Available
-                    </span>
-                  )} */}
-                  {/* <a
-                    href={product.data.product_page_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="block w-full bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition-colors text-center"
-                  >
-                    View on Amazon
-                  </a> */}
+                  <button class="w-full bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition-colors mt-3">
+                    View Details
+                  </button>
                 </div>
-              </div>
+              </a>
             ))
           }
         </div>

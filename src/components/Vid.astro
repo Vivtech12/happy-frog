@@ -3,7 +3,9 @@ import Underline from "./reusable/Underline.astro";
 ---
 
 <section class="w-screen bg-white rounded-t-3xl">
-	<div class="h-120 w-full max-w-7xl mx-auto overflow-hidden py-4">
+	<div
+		class="h-[70vh] sm:h-120 w-full max-w-7xl mx-auto overflow-hidden sm:py-4"
+	>
 		<div class="relative h-full w-full">
 			<video
 				id="heroVideo"
@@ -22,7 +24,7 @@ import Underline from "./reusable/Underline.astro";
 				Your browser does not support the video tag.
 			</video>
 			<div
-				class="pointer-events-none absolute bottom-12 left-12 flex items-end justify-start p-12"
+				class="pointer-events-none absolute left-0 bottom-12 sm:left-12 flex items-end justify-start p-12"
 			>
 				<div class="text-white">
 					<h1 class="mt-auto max-w-3xl">
@@ -50,8 +52,8 @@ import Underline from "./reusable/Underline.astro";
 			<div class="flex-grow">
 				<p class="text-base sm:text-lg md:text-xl leading-relaxed">
 					<strong class="font-semibold">Happy Frog</strong> is a leading
-					UK B2B wholesale distributor of consumer electronics, based
-					in <strong class="font-semibold">Birmingham, UK</strong>,
+					UK B2B wholesale distributor of consumer electronics, based in
+					<strong class="font-semibold">Birmingham, UK</strong>,
 					serving clients across <strong class="font-semibold"
 						>the UK</strong
 					>. We specialize in the sourcing and distribution of
