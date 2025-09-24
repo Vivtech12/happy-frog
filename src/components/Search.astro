@@ -1,0 +1,138 @@
+---
+import { Icon } from "astro-icon/components";
+import PagefindSearch from "astro-pagefind/components/Search";
+
+const { id } = Astro.props;
+---
+
+<button
+    class="px-5 py-4 hover:cursor-pointer"
+    aria-label="search"
+    onclick={`window.${"modal" + id}.showModal(); document.body.classList.add('overflow-hidden')`}
+>
+    <Icon name="search" size={24} />
+</button>
+<dialog
+    id={"modal" + id}
+    class="fixed inset-0 left-1/2 z-[1000] top-2 !mt-10 pb-10 w-screen overflow-visible bg-white -translate-x-1/2 translate-y-[5vh] transform rounded-xl p-4 opacity-0 shadow-lg backdrop-blur-lg transition-all duration-500 transition-discrete open:backdrop:bg-black/50 backdrop:backdrop-blur-sm backdrop:bg-black/0 open:opacity-100 open:starting:-translate-y-[5vh] open:starting:opacity-0 sm:w-1/2"
+>
+    <form method="dialog" class="bg-white">
+        <button
+            class="z-50 float-right pb-4 hover:opacity-90 focus:outline-none hover:cursor-pointer"
+            ><Icon name="close" size={24} class="text-color-heading" /></button
+        >
+        <h2
+            class="mt-2 w-full text-center text-xl font-bold sm:text-2xl mb-4 sm:mb-8 text-color-heading"
+        >
+            Search
+        </h2>
+        <PagefindSearch
+            id="search"
+            className="pagefind-ui"
+            uiOptions={{
+                showImages: true,
+                showSubResults: true,
+                excerptLength: 30,
+            }}
+        />
+    </form>
+</dialog>
+
+<style is:global>
+    nav {
+        display: grid;
+        place-items: center;
+    }
+
+    .pagefind-ui {
+        --pagefind-ui-scale: 0.75;
+        --pagefind-ui-primary: #4b47bb;
+        --pagefind-ui-text: black;
+        --pagefind-ui-border: #6866d8;
+        --pagefind-ui-border-width: 1px;
+        --pagefind-ui-border-radius: 0.25rem;
+        --pagefind-ui-reset-mark: black;
+        /* --pagefind-ui-font: sans-serif; */
+        width: 75%;
+        margin: 0 auto;
+    }
+
+    .pagefind-ui__search-input {
+        background-color: black;
+        font-weight: 500 !important;
+        margin-bottom: 20px;
+    }
+
+    .pagefind-ui .pagefind-ui__drawer:not(.pagefind-ui__hidden) {
+        position: fixed;
+        max-height: 70vh;
+        overflow-y: auto;
+        left: 0;
+        right: 0;
+        margin-top: 0px;
+        z-index: 9999;
+        padding: 0 2em 1em;
+        box-shadow:
+            0 10px 10px -5px rgba(0, 0, 0, 0.2),
+            0 2px 2px 0 rgba(0, 0, 0, 0.1);
+        border-bottom-right-radius: var(--pagefind-ui-border-radius);
+        border-bottom-left-radius: var(--pagefind-ui-border-radius);
+        background-color: white;
+    }
+
+    .pagefind-ui .pagefind-ui__result-link {
+        color: black;
+    }
+
+    .pagefind-ui .pagefind-ui__result-excerpt {
+        color: black;
+    }
+    .pagefind-ui .pagefind-ui__result-excerpt mark {
+        background-color: #8e9aeb;
+    }
+
+    .pagefind-ui__result-image {
+        display: block !important;
+        width: 60px !important;
+        height: 60px !important;
+        object-fit: contain !important;
+        border-radius: 4px !important;
+        margin-right: 12px !important;
+    }
+
+    .pagefind-ui__result {
+        display: flex !important;
+        align-items: flex-start !important;
+        padding: 12px !important;
+        border-bottom: 1px solid #eee !important;
+    }
+
+    .pagefind-ui__result-inner {
+        flex: 1 !important;
+    }
+
+    .pagefind-ui__result-title {
+        margin-bottom: 4px !important;
+        font-weight: 600 !important;
+    }
+
+    .pagefind-ui__result-excerpt {
+        font-size: 14px !important;
+        color: #666 !important;
+        line-height: 1.4 !important;
+    }
+</style>
+
+<script>
+    const modals = document.querySelectorAll("dialog");
+    modals.forEach((modal) => {
+        modal.addEventListener("close", () => {
+            document.body.classList.remove("overflow-hidden");
+        });
+        modal.addEventListener("click", (event) => {
+            if ((event.target as HTMLElement).nodeName === "DIALOG") {
+                modal.close();
+            }
+        });
+    });
+</script>

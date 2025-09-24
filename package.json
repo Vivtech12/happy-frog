@@ -15,6 +15,7 @@
 		"@astrojs/sitemap": "^3.4.1",
 		"astro": "^5.11.1",
 		"astro-icon": "^1.1.5",
+		"astro-pagefind": "^1.8.5",
 		"csv-parse": "^6.1.0",
 		"sharp": "^0.34.3",
 		"swiper": "^11.2.10",

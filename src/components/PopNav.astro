@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import Search from "./Search.astro";
 
 const menuItems = [
 	{
@@ -80,120 +81,138 @@ const menuItems = [
 					class="active:!bg-green/20 group relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full transition-colors duration-200 ease-in-out lg:hidden"
 				>
 					<span
-						class="z-50 h-[1px] w-7 rounded-full !bg-black transition-all duration-150 group-aria-pressed:h-0 group-aria-pressed:bg-black before:absolute before:h-[1px] before:w-7 before:-translate-x-3.5 before:-translate-y-3 before:rounded-full before:bg-black before:transition-all before:duration-150 before:content-[''] group-aria-pressed:before:translate-y-0 group-aria-pressed:before:rotate-45 after:absolute after:h-[1px] after:w-7 after:-translate-x-3.5 after:translate-y-3 after:rounded-full after:bg-black after:transition-all after:duration-150 after:content-[''] group-aria-pressed:after:translate-y-0 group-aria-pressed:after:-rotate-45 hover:cursor-pointer lg:hidden "
+						class="z-50 h-[1px] w-7 rounded-full !bg-black transition-all duration-150 group-aria-pressed:h-0 group-aria-pressed:bg-black before:absolute before:h-[1px] before:w-7 before:-translate-x-3.5 before:-translate-y-3 before:rounded-full before:bg-black before:transition-all before:duration-150 before:content-[''] group-aria-pressed:before:translate-y-0 group-aria-pressed:before:rotate-45 after:absolute after:h-[1px] after:w-7 after:-translate-x-3.5 after:translate-y-3 after:rounded-full after:bg-black after:transition-all after:duration-150 after:content-[''] group-aria-pressed:after:translate-y-0 group-aria-pressed:after:-rotate-45 hover:cursor-pointer lg:hidden"
 					>
 					</span>
 				</button>
 			</div>
-			<div class=" items-center gap-3 w-52 justify-end px-4 hidden sm:flex">
-				<!-- <Icon name="search" size={24} /> -->
+			<div
+				class="items-center gap-3 w-52 justify-end px-4 hidden sm:flex"
+			>
+				<Search id="search" />
 				<a href="/contact">
-				<Icon name="mail" size={24} />
-				<a/>
-				<a href="tel:44 7492 230089">
-				<Icon name="phone-outgoing-one" size={24} />
-				<a/>
+					<Icon name="mail" size={24} />
+					<a></a>
+					<a href="tel:44 7492 230089">
+						<Icon name="phone-outgoing-one" size={24} />
+						<a></a>
+					</a>
+				</a>
 			</div>
 		</div>
+
+		<script>
+			function initializeMobileMenu() {
+				// Handle navbar positioning on refresh/scroll
+				function handleNavbarPosition() {
+					const header = document.querySelector("header");
+					if (header) {
+						// Force a small scroll down to trigger navbar repositioning
+						if (window.scrollY > 0) {
+							// Force a small scroll adjustment to trigger navbar repositioning
+							setTimeout(() => {
+								window.scrollTo(0, window.scrollY);
+							}, 100);
+						}
+					}
+				}
+
+				// Run on page load
+				handleNavbarPosition();
+
+				const mobileMenuButton = document.getElementById(
+					"mobile-menu-button",
+				) as HTMLButtonElement;
+				const mobileMenu = document.getElementById(
+					"mobile-menu",
+				) as HTMLElement;
+
+				if (mobileMenuButton && mobileMenu) {
+					function handleMobileMenuState() {
+						if (window.innerWidth < 768) {
+							mobileMenu.setAttribute("popover", "auto");
+
+							if (
+								!mobileMenuButton.hasAttribute(
+									"group-aria-pressed",
+								)
+							) {
+								mobileMenuButton.setAttribute(
+									"group-aria-pressed",
+									"false",
+								);
+							}
+
+							if (
+								!mobileMenu.hasAttribute(
+									"data-toggle-listener-added",
+								)
+							) {
+								mobileMenu.addEventListener(
+									"toggle",
+									handlePopoverToggle,
+								);
+								mobileMenu.setAttribute(
+									"data-toggle-listener-added",
+									"true",
+								);
+							}
+						} else {
+							mobileMenu.removeAttribute("popover");
+							mobileMenu.removeAttribute(
+								"data-toggle-listener-added",
+							);
+							mobileMenuButton.removeAttribute(
+								"group-aria-pressed",
+							);
+
+							if (mobileMenu.matches(":popover-open")) {
+								mobileMenu.hidePopover();
+							}
+
+							if (
+								mobileMenu.hasAttribute(
+									"data-toggle-listener-added",
+								)
+							) {
+								mobileMenu.removeEventListener(
+									"toggle",
+									handlePopoverToggle,
+								);
+							}
+							document.body.classList.remove("overflow-y-hidden");
+						}
+					}
+
+					function handleLinkClick() {
+						if (window.innerWidth < 768) {
+							mobileMenu.hidePopover();
+						}
+					}
+
+					const menuLinks = mobileMenu.querySelectorAll("a");
+					menuLinks.forEach((link) => {
+						link.addEventListener("click", handleLinkClick);
+					});
+
+					function handlePopoverToggle(event: Event) {
+						const target = event.target as HTMLElement;
+
+						if (target.matches(":popover-open")) {
+							mobileMenuButton.ariaPressed = "true";
+							document.body.classList.add("overflow-y-hidden");
+						} else {
+							mobileMenuButton.ariaPressed = "false";
+							document.body.classList.remove("overflow-y-hidden");
+						}
+					}
+					window.addEventListener("resize", () => {
+						handleMobileMenuState();
+					});
+					handleMobileMenuState();
+				}
+			}
+			initializeMobileMenu();
+		</script>
 	</div>
 </header>
-
-<script>
-	function initializeMobileMenu() {
-		// Handle navbar positioning on refresh/scroll
-		function handleNavbarPosition() {
-			const header = document.querySelector("header");
-			if (header) {
-				// Force a small scroll down to trigger navbar repositioning
-				if (window.scrollY > 0) {
-					// Force a small scroll adjustment to trigger navbar repositioning
-					setTimeout(() => {
-						window.scrollTo(0, window.scrollY);
-					}, 100);
-				}
-			}
-		}
-
-		// Run on page load
-		handleNavbarPosition();
-
-		const mobileMenuButton = document.getElementById(
-			"mobile-menu-button",
-		) as HTMLButtonElement;
-		const mobileMenu = document.getElementById(
-			"mobile-menu",
-		) as HTMLElement;
-
-		if (mobileMenuButton && mobileMenu) {
-			function handleMobileMenuState() {
-				if (window.innerWidth < 768) {
-					mobileMenu.setAttribute("popover", "auto");
-
-					if (!mobileMenuButton.hasAttribute("group-aria-pressed")) {
-						mobileMenuButton.setAttribute(
-							"group-aria-pressed",
-							"false",
-						);
-					}
-
-					if (
-						!mobileMenu.hasAttribute("data-toggle-listener-added")
-					) {
-						mobileMenu.addEventListener(
-							"toggle",
-							handlePopoverToggle,
-						);
-						mobileMenu.setAttribute(
-							"data-toggle-listener-added",
-							"true",
-						);
-					}
-				} else {
-					mobileMenu.removeAttribute("popover");
-					mobileMenu.removeAttribute("data-toggle-listener-added");
-					mobileMenuButton.removeAttribute("group-aria-pressed");
-
-					if (mobileMenu.matches(":popover-open")) {
-						mobileMenu.hidePopover();
-					}
-
-					if (mobileMenu.hasAttribute("data-toggle-listener-added")) {
-						mobileMenu.removeEventListener(
-							"toggle",
-							handlePopoverToggle,
-						);
-					}
-					document.body.classList.remove("overflow-y-hidden");
-				}
-			}
-
-			function handleLinkClick() {
-				if (window.innerWidth < 768) {
-					mobileMenu.hidePopover();
-				}
-			}
-
-			const menuLinks = mobileMenu.querySelectorAll("a");
-			menuLinks.forEach((link) => {
-				link.addEventListener("click", handleLinkClick);
-			});
-
-			function handlePopoverToggle(event: Event) {
-				const target = event.target as HTMLElement;
-
-				if (target.matches(":popover-open")) {
-					mobileMenuButton.ariaPressed = "true";
-					document.body.classList.add("overflow-y-hidden");
-				} else {
-					mobileMenuButton.ariaPressed = "false";
-					document.body.classList.remove("overflow-y-hidden");
-				}
-			}
-			window.addEventListener("resize", () => {
-				handleMobileMenuState();
-			});
-			handleMobileMenuState();
-		}
-	}
-	initializeMobileMenu();
-</script>
