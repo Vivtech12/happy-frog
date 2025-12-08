@@ -3,7 +3,9 @@ import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import pagefind from "astro-pagefind";
+import { createRequire } from 'module';
 
+const require = createRequire(import.meta.url);
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,4 +22,5 @@ export default defineConfig({
             weights:["100 900"]
         }]
     }
-});
+});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
